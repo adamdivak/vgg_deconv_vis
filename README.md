@@ -44,7 +44,7 @@ had I used more images.
 ## Forward pass
 The mean activations of each neuron were calculated for each image in the dataset. Images for each neuron providing the 
 top 5 activations were selected and stored in a separate file. I was also planning to create counter-examples, 
-so I also saved the images producing the smallest 5 activations, but to the lack of time this was not included in the 
+so I also saved the images producing the smallest 5 activations, but due to the lack of time this was not included in the 
 analysis.
 
 ## Deconvnet
@@ -76,13 +76,13 @@ most notably tf_cnnvis, but did not directly copy code from them (except for the
 
  - [Visualise convolution kernels.ipynb](Visualise%20convolution%20kernels.ipynb) - First I created a notebook to visualise the filters and the activations (not the gradients) in a minimal network on the MNIST dataset. This was only used to get used to working with Tensorflow and was not directly required to solve the task at hand.
  - [Verify deconvolution calculation.ipynb](Verify%20deconvolution%20calculation.ipynb) - I wanted to implement the deconvnet using the gradients calculated by Tensorflow, as opposed to building the graph myself. Before starting the work, I wanted to make sure that the two approaches are equivalent, so I created a minimal example comparing to verify that my thinking is correct. This pointed to flaws in my understanding, but eventually led to the conclusion that this is indeed a correct method.
- - [Calculate mean activations in VGG layers.ipynb](Calculate%20mean%20activations%20in%20VGG%20layers.ipynb)I calculated the mean activations of each neuron for each image in the dataset
+ - [Calculate mean activations in VGG layers.ipynb](Calculate%20mean%20activations%20in%20VGG%20layers.ipynb) - I calculated the mean activations of each neuron for each image in the dataset
  - [Merge mean activations and generate activation gradient plots.ipynb](Merge%20mean%20activations%20and%20generate%20activation%20gradient%20plots.ipynb) - Selected the top 5 images for each neuron and calculated the gradient of the activation
  - [Plot gradient images per layer.ipynb](Plot%20gradient%20images%20per%20layer.ipynb) Combined the plots for all neurons in a given layer to have an overview of the results
 
 # Results
 Visualisations generated using the deconvnet for VGG-16 provide insights that are in line with the findings of 
-Zeiler et al. and others on the workings on a convolutional neural network. 
+Zeiler et al. and others on how convolutional neural networks understand images. 
 Neurons in low level convolutional layers exhibit high activation for simple image features like edges or a 
 narrow colour range. Neurons in higher layers show high activations for higher level features like the presence of 
 specific patters (like tiles, stripes, or textures of different materials) or colour combinations on the image. 
