@@ -1,8 +1,7 @@
 # Visualising VGG using the Deconvnet technique
 
 # Abstract
-[Zeiler et al.](https://cs.nyu.edu/~fergus/papers/zeilerECCV2014.pdf) developed a technique for visualising the operation of convolutional neural networks by mapping the 
-activations of intermediate layers back to the input pixel space. This technique, which they called deconvnet, 
+[Zeiler et al.](https://cs.nyu.edu/~fergus/papers/zeilerECCV2014.pdf) developed a technique for visualising the operation of convolutional neural networks by mapping the  activations of intermediate layers back to the input pixel space. This technique, which they called deconvnet, 
 makes it possible to not only understand which images cause activations in a given layer, but also highlights parts of 
 the picture causing that activation (e.g. strong edges, objects of a given colour, etc.).
 
@@ -10,7 +9,7 @@ I have created a general implementation of a deconvnet in Tensorflow, and used t
 image classification network, using a subset of the ImageNet dataset. First I used 10000 images from the validation set of 
 the Tiny ImageNet Challenge and recorded the mean activation of each neuron in each layer of the pre-trained VGG model. 
 Then for each neuron I selected 5 images producing the highest mean activation and calculated the deconvolution of these 
-using the deconvnet. Finally I joined the visualisations of all neutrons in a each layer to create an overview of the 
+using the deconvnet. Finally I joined the visualisations of all neurons in a each layer to create an overview of the 
 activations of the layer, and used these visualisations to understand how the network works.
 
 # Methods
@@ -54,7 +53,7 @@ network by iterating over all previous operations and attaching the appropriate 
 While this method works perfectly, it would make the deconvolution network difficult to create and manage, and specific 
 to the given input network.
 
-The original article hints on the fact and other expand on it that this deconvolution network is the same as calculating the 
+The original article hints on the fact and others expand on it that this deconvolution network is the same as calculating the 
 gradient of a given neuron with respect to the input. Using the gradient instead of manually creating a deconvolution network 
 is superior because Tensorflow (and all other comparable frameworks) already have high level abstractions for calculating 
 the gradient of a layer w.r.t. the input, so instead of manually creating a complicated graph, we can offload that to 
@@ -70,7 +69,7 @@ Pandas was used for selecting the correct images for each neuron and Matplotlib 
 
 All code created during the analysis is kept in the notebooks, as detailed below. 
 My aim was to make it easy to follow how I solved the problem, rather than to create a simple API for 
-performing the same analysis on a different network. The code is does not depend on the network though, 
+performing the same analysis on a different network. The code does not depend on the network though, 
 and could be easily refactored. I did look at other implementations of the same technique as an inspiration, 
 most notably tf_cnnvis, but did not directly copy code from them (except for the VGG network itself).
 
@@ -94,7 +93,7 @@ Looking at the top 5 images that activate a neuron sometimes suggests strong clu
 Generating the deconvnet images has the advantage that it helps us understand whether the network used the ‘obvious’ 
 information in the image, which is directly related to the objects depicted, or if the network ‘cheated’ by taking into 
 account other sources of information that we would consider insignificant – an example of this could be whether the 
-network recognises a dog by looking at the texture of the fur and the shape of the face, of if it predicts the dog 
+network recognises a dog by looking at the texture of the fur and the shape of the face, or if it predicts the dog 
 label by looking at the texture of the grass in the background. Based on the images generated in this project, 
 we can safely say that VGG-16 is not ‘cheating’, so predictions are based on image features of the foreground object.
 
